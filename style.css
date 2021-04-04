@@ -337,7 +337,7 @@ h4 {
 .modal {
   text-align: left;
   padding: 1rem;
-  
+  position: absolute;
   display: none;
 }
 .modal p {
