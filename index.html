@@ -40,9 +40,9 @@
           <img id="img-toggle" src="./images/icon-hamburger.svg" alt="">
           <img src="./images/icon-close-menu.svg" alt="" id="img-close">
           <ul class="nav-list">
-            <li onclick="menuClicked(event)"><a class="nav-link" href="#">About</a></li>
-            <li onclick="menuClicked(event)"><a class="nav-link" href="#">Discover</a></li>
-            <li onclick="menuClicked(event)"><a class="nav-link" href="#">Get Started</a></li>
+            <li><a class="nav-link" href="#">About</a></li>
+            <li><a class="nav-link" href="#">Discover</a></li>
+            <li><a class="nav-link" href="#">Get Started</a></li>
           </ul>         
         </div>                  
       </nav>
@@ -62,7 +62,8 @@
         <div class="card-footer">
           <button class="btn" id="btn-back">Back this project</button>
           <button class="bookmark">
-            <img src="./images/icon-bookmark.svg" alt="" srcset="" />
+            <svg width="56" height="56" xmlns="http://www.w3.org/2000/svg"><g fill="none" fill-rule="evenodd"><circle fill="#2F2F2F" cx="28" cy="28" r="28"/><path fill="#B1B1B1" d="M23 19v18l5-5.058L33 37V19z"/></g></svg>
+            <!-- <img src="./images/icon-bookmark.svg" alt="" srcset="" /> -->
             <span>Bookmark</span>            
           </button>
         </div>
@@ -72,7 +73,7 @@
       <div class="data flex-column card box-shadow">
         
         <div>
-          <p>$89,914</p>
+          <p><span>$</span><span id="totalBacked">89,914</span></p>
           <p class="gray-text">of $100,000 backed</p>
         </div>
         <div>
@@ -124,11 +125,11 @@
             </p>
           </div>
           <div class="quant">
-            <span class="remaining">101</span>
+            <span class="stock">101</span>
             <span class="gray-text">left</span>
           </div>
           <div class="card-footer">
-          <button class="btn" id="btn-bamboo-stand">Select Reward</button>
+          <button class="btn">Select Reward</button>
           </div>          
         </div>
         <!-- back card 2 -->
@@ -145,11 +146,11 @@
             </p>
           </div>          
           <div class="quant">
-            <span class="remaining">64</span>
+            <span class="stock">64</span>
             <span class="gray-text">left</span>
           </div>
           <div class="card-footer">
-            <button class="btn" id="btn-black-edition">Select Reward</button>
+            <button class="btn">Select Reward</button>
           </div>          
         </div>
         <!-- back card 3 -->
@@ -166,10 +167,10 @@
             </p>
           </div>          
           <div class="quant">
-            <span class="remaining">0</span> <span class="gray-text">left</span>
+            <span class="stock">0</span> <span class="gray-text">left</span>
           </div>
           <div class="card-footer">
-            <button class="btn sold-out">Out of Stock</button>
+            <button class="btn">Select Reward</button>
           </div>
           
         </div>
@@ -178,7 +179,10 @@
         <!-- Selection modal start -->
 
         <div class="modal flex-column card box-shadow">
-          <h4>Back this project</h4>       
+          <div class="modal-div">
+            <h4>Back this project</h4>
+            <span id="modalCloseBtn">&times;</span>
+          </div>
               <p class="gray-text">
                 Want to support us in bringing Mastercraft Bamboo Monitor Riser out
                 in the world?
@@ -188,7 +192,7 @@
           <div class="modal-card card box-shadow" name="modal">
             <div class="mc-header">
               <label for="radio" class="label-radio">
-                <input type="radio" name="radio" id="radio0" value="0" onchange="radioChange()">
+                <input type="radio" name="radio" onchange="radioChange()">
                 <span class="checkmark"></span>
               </label>
               <div >
@@ -201,14 +205,14 @@
                 simply believe in our project. As a backer, you will be signed up to receive product updates via email.
               </p>
             </div>
-            <div class="toggle-footer">
+            <div class="toggle-footer hidden">
               <p class="gray-text">Enter your pledge</p>
               <div class="mc-buttons">
                 <button class="btn-pledge">
                   <label for="pledge-value">$</label>
-                  <input type="numeric" value="10" min="1" max="24" name="pledge-value">
+                  <input type="numeric" value="10" min="1" max="24" name="pledge-value" class="pledge-value">
                 </button>
-                <button class="btn">Continue</button>
+                <button class="btn btn-continue">Continue</button>
               </div>
             </div>
 
@@ -218,7 +222,7 @@
           <div class="modal-card card box-shadow">
             <div class="mc-header">
               <label for="radio" class="label-radio">
-                <input type="radio" name="radio" id="radio1" value="1" checked onchange="radioChange()">
+                <input type="radio" name="radio" checked onchange="radioChange()">
                 <span class="checkmark"></span>
               </label>
               
@@ -233,12 +237,12 @@
                 You get an ergonomic stand made of natural bamboo. You've helped us launch our promotional campaign, and you’ll be added to a special Backer member list.
               </p>
               <div class="quant">
-                <span class="remaining">101</span>
+                <span class="stock">101</span>
                 <span class="gray-text">left</span>
               </div>
             </div>
             
-            <div class="toggle-footer">
+            <div class="toggle-footer hidden">
               <p class="gray-text">Enter your pledge</p>
               <div class="mc-buttons">
                 <button class="btn-pledge">
@@ -255,7 +259,7 @@
           <div class="modal-card card box-shadow">
             <div class="mc-header">
               <label for="radio" class="label-radio">
-                <input type="radio" name="radio" id="radio2" value="2" onchange="radioChange()">
+                <input type="radio" name="radio" onchange="radioChange()">
                 <span class="checkmark"></span>
               </label>
               
@@ -270,17 +274,17 @@
                 You get a Black Special Edition computer stand and a personal thank you. You’ll be added to our Backer member list. Shipping is included.
               </p>
               <div class="quant">
-                <span class="remaining">64</span>
+                <span class="stock">64</span>
                 <span class="gray-text">left</span>
               </div>
             </div>
 
-            <div class="toggle-footer">
+            <div class="toggle-footer hidden">
               <p class="gray-text">Enter your pledge</p>
               <div class="mc-buttons">
                 <button class="btn-pledge">
                   <label for="pledge-value">$</label>
-                  <input type="numeric" value="75" min="75" max="199" name="pledge-value">
+                  <input type="numeric" value="75" class="pledge-value" name="pledge-value" min="75" max="199" >
                 </button>
                 <button class="btn btn-continue">Continue</button>
               </div>
@@ -292,7 +296,7 @@
           <div class="modal-card card box-shadow">
             <div class="mc-header">
               <label for="radio" class="label-radio">
-                <input type="radio" name="radio" id="radio3" value="3" onchange="radioChange()">
+                <input type="radio" name="radio" onchange="radioChange()">
                 <span class="checkmark"></span>
               </label>
               
@@ -305,16 +309,16 @@
           <div class="card-body">
             <p class="gray-text">You get two Special Edition Mahogany stands, a Backer T-Shirt, and a personal thank you. You’ll be added to our Backer member list. Shipping is included.</p>
             <div class="quant">
-              <span class="remaining">0</span>
+              <span class="stock">0</span>
               <span class="gray-text">left</span>
             </div>
           </div>
-          <div class="toggle-footer">
+          <div class="toggle-footer hidden">
             <p class="gray-text">Enter your pledge</p>
             <div class="mc-buttons">
               <button class="btn-pledge">
                 <label for="pledge-value">$</label>
-                <input type="numeric" value="200" min="200" max="999" name="pledge-value">
+                <input type="numeric" value="200" min="200" max="999" name="pledge-value" class="pledge-value">
               </button>
               <button class="btn btn-continue">Continue</button>
             </div>
@@ -326,7 +330,7 @@
       <!-- Section MODAL end -->
 
       <!-- Success modal start -->
-      <div class="success card box-shadow">
+      <div class="card box-shadow hidden" id="success">
         <img src="./images/icon-check.svg" alt="" srcset="">
         <div>
           <h4>Thanks for your support!</h4>
@@ -337,7 +341,7 @@
           </p>
         </div>
         <div>
-          <button class="btn">Got it!</button>
+          <button class="btn gotIt" onclick="closeSuccess()">Got it!</button>
         </div>
 
       </div>
@@ -349,9 +353,6 @@
     <footer>
       <p>Coded by <a href="">@rpad88</a></p>
     </footer>
-
-    <script src="./js/script.js"></script>
-    <script src="./js/select.js"></script>
-    <script src="./js/modal.js"></script>
+    <script type="module" src="./js/main.js"></script>
   </body>
 </html>

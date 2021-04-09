@@ -1,44 +1,41 @@
-const back = document.querySelector("#btn-back");
+import {overlay} from "./navbar.js"
+
+// MODAL
+const btnBack = document.querySelector("#btn-back");
 const modal = document.querySelector(".modal");
+const modalCloseBtn = document.querySelector('#modalCloseBtn');
 
-back.addEventListener("click", function () {
-  console.log("chamando evento");
-});
 
-function toggle() {
-  if (modal.style.display == "none") {
-    modal.style.display = "visible";
-  } else {
-    modal.style.display = "none";
-  }
+btnBack.onclick = openBack;
+modalCloseBtn.onclick = closeBack;
+
+// open clas modal
+function openBack() {
+    overlay.classList.add('active');
+    modal.style.visibility = "visible";
 }
 
-
-
-// Functions to navbar
-const navList = document.querySelector(".nav-list");
-const openMenu = document.querySelector("#img-toggle"); //Hamburguer img
-const closeMenu = document.querySelector("#img-close");// X img
-const overlay = document.querySelector('#overlay');
-
-openMenu.addEventListener("click",openNavList);
-closeMenu.addEventListener("click", closeNavList);
-overlay.addEventListener("click", closeNavList);
-
-function openNavList() {
-  navList.style.display = "block";
-  openMenu.style.display = "none";
-  closeMenu.style.display = "block";
-  overlay.classList.add('active');
-}
-
-function closeNavList() {
-  navList.style.display = "none";
-  openMenu.style.display = "block";
-  closeMenu.style.display = "none";
+function closeBack() {
+  modal.style.visibility = "hidden";
   overlay.classList.remove('active');
 }
 
-function menuClicked(event) { //check if menu link is working
-  alert(`${event.target.textContent} was clicked`);
+// END MODAL
+
+// Modal Succes div
+const success = document.querySelector('#success');
+
+function openSucces() {
+  success.style.visibility = "visible";
+  modal.style.visibility = "hidden";
+  // overlay.setAttribute('zIndex', '9');
+  overlay.classList.add("active");
 }
+
+function closeSuccess() {
+  success.style.visibility = "hidden";
+  overlay.classList.remove('active');
+}
+// End modal Succes div
+
+export {openBack, closeBack, openSucces, closeSuccess}

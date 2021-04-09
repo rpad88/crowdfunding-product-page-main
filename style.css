@@ -105,7 +105,7 @@ html {
 
 /*****
  Card Description
-  *****/
+*****/
 .description {
   text-align: center;
   /* top: -2rem; */
@@ -147,6 +147,9 @@ html {
   background-color: var(--dark-cyan);
 }
 
+/* 
+  Bookmark Button and SVG img
+*/
 .bookmark {
   display: flex;
   border-radius: 2rem;
@@ -161,13 +164,30 @@ html {
   background-color: var(--dark-gray);
   transition: 0.5s;
 }
+.bookmark:active {
+  color: var(--cyan);
+  background-color: lightgray;
+}
 
-.bookmark span {
+.bookmark:active svg circle {
+  fill: var(--cyan);
+}
+
+svg:hover circle {
+  fill: lightgray;
+  transition: .4s;
+}
+
+.bookmark:active svg path{
+  fill: #fff;
+}
+
+.bookmark span:nth-child(2) {
   display: none;
 }
 
 /* 
-Data Card
+  Data Card
  */
 .data {
   text-align: center;
@@ -247,7 +267,7 @@ h4 {
   padding: 0 1rem;
   /* margin: .5rem 0; */
 }
-.remaining {
+.stock {
   font-size: 2rem;
   font-weight: 700;
 }
@@ -255,6 +275,8 @@ h4 {
 .back-option:last-of-type {
   opacity: 0.5;
 }
+
+.no-stock { opacity: .7;}
 
 /*****
  Default
@@ -304,10 +326,10 @@ h4 {
   box-shadow: 0 0 2px rgba(156, 152, 152, 0.397);
 }
 
-.sold-out {
+.btn-sold-out {
   background-color: var(--dark-gray);
 }
-.sold-out:hover {
+.btn-sold-out:hover {
   background-color: var(--dark-gray);
   cursor: default;
 }
@@ -327,6 +349,7 @@ h4 {
   background-color: rgba(0,0,0,0.4);
   z-index: 5;
   pointer-events: none;
+  transition: .4s;
 }
 
 #overlay.active {
@@ -337,9 +360,31 @@ h4 {
 .modal {
   text-align: left;
   padding: 1rem;
+  /* position: relative; original */
   position: absolute;
-  display: none;
+  background-color: #fff;
+  top: 20%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 7;
+  visibility: hidden;
 }
+.modal-div {
+  display: inline-flex;
+  width: 100%;
+  justify-content: space-around;
+  align-items: center;
+}
+
+#modalCloseBtn {
+  font-size: 1.4rem;
+  font-weight: bold;
+  color: var(--dark-gray);
+}
+#modalCloseBtn:hover {
+  cursor: pointer;
+}
+
 .modal p {
   width: 100%;
 }
@@ -365,62 +410,7 @@ input[type="radio"] {
   opacity: 1;
   cursor: pointer;
 }
-/* STYLING RADIO BUTTON */
-[type="radio"]:checked,
-[type="radio"]:not(:checked) {
-  position: absolute;
-  left: -9999px;
-}
 
-[type="radio"]:checked + span,
-[type="radio"]:not(:checked) + span {
-    position: relative;
-    padding-left: 28px;
-    cursor: pointer;
-    line-height: 20px;
-    display: inline-block;
-    color: #666;
-}
-
-[type="radio"]:checked + span:before,
-[type="radio"]:not(:checked) + span:before {
-    content: '';
-    position: absolute;
-    left: 0;
-    top: 0;
-    width: 18px;
-    height: 18px;
-    border: 1px solid #ddd;
-    border-radius: 100%;
-    background: #fff;
-}
-
-[type="radio"]:checked + span:after,
-[type="radio"]:not(:checked) + span:after {
-    content: '';
-    width: 12px;
-    height: 12px;
-    background: #F87DA9;
-    position: absolute;
-    top: 4px;
-    left: 4px;
-    border-radius: 100%;
-    -webkit-transition: all 0.2s ease;
-    transition: all 0.2s ease;
-}
-
-[type="radio"]:not(:checked) + span:after {
-  opacity: 0;
-  -webkit-transform: scale(0);
-  transform: scale(0);
-}
-[type="radio"]:checked + label:after {
-  opacity: 1;
-  -webkit-transform: scale(1);
-  transform: scale(1);
-}
-
-/* END OF STYLING */
 .mc-header span:hover {
   color: var(--cyan);
   cursor: pointer;
@@ -431,6 +421,9 @@ input[type="radio"] {
   width: 100%;
   padding: 0.5rem;
   text-align: center;
+}
+.hidden {
+  display: none;
 }
 
 .mc-buttons {
@@ -475,6 +468,38 @@ input[type="numeric"] {
   -moz-appearance: textfield;
   appearance: textfield;
 }
+
+/* 
+  SUCCESS card
+*/
+#success {
+  background-color: #fff;
+  padding: 1.2rem;
+  display: flex;
+  text-align: center;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  align-items: center;
+  flex-direction: column;
+  z-index: 10;
+  visibility: hidden;
+  transition: .4s;
+}
+
+#success h4 {
+  text-align: center;
+  margin: 1rem 0;
+}
+
+#success p {
+  margin-bottom: 1rem;
+}
+
+/* 
+  End SUCCESS card
+*/
 
 @media screen and (min-width: 602px) {
   .hero-image {
@@ -522,8 +547,14 @@ input[type="numeric"] {
     gap: 0.7rem;
     padding-right: 1rem;
   }
-  .bookmark span {
+
+  .img-bookmark:hover {
+    mask: url('./images/icon-bookmark.svg');
+    fill: bisque;
+    fill-opacity: 1;
+  }
+
+  .bookmark span:nth-child(2) {
     display: block;
-    margin-left: .5rem;
   }
 }
